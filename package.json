@@ -1,0 +1,21 @@
+{
+  "name": "converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bitly": "^7.1.2",
+    "body-parser": "^1.19.0",
+    "cross-fetch": "^3.1.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "git": "^0.1.5",
+    "mongoose": "^5.13.7",
+    "nodemon": "^2.0.12"
+  }
+}
