@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Learn JS</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+</head>
+<body>
+<div class="container p-3">
+		<div class="row">
+			<% if(found) {
+				old_message1 = old_message
+				message1 = message
+				link1 = data
+			} else {
+				old_message1 = ""
+				message1 = ""
+				link1 = ""
+			} %>
+
+			<form action="/" method="POST">
+				<div class="col mb-3">
+					<textarea id="inputdata" name="inputdata" class="form-control" rows="7" placeholder="Insert Data..."><%= old_message1 %></textarea><br>
+					<button type="submit" id="convert" class="btn btn-primary">Convert Link</button>
+				</div>
+			</form>
+			<form action="/sendTelegram" method="POST">
+				<div class="col">
+					<textarea id="outputdata" name="outputdata" class="form-control" rows="7" placeholder="Output Data..."><%= message1 %><%= link1 %></textarea><br>
+					<button type="submit" id="telegram" class="btn btn-warning">Telegram</button>
+			</form>
+					<button id="copy" onclick="clickHandler" class="btn btn-danger">Copy</button>
+				</div>
+		</div>
+	
+	
+</div>
+<script>
+	function clickHandler() {
+    console.log("copy clicked");
+}
+</script>
+</body>
+</html>
