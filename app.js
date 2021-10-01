@@ -7,14 +7,21 @@ fetch.Promise = Bluebird;
 const BitlyClient = require('bitly').BitlyClient;
 const bodyParser = require('body-parser')
 const bitly = new BitlyClient('2adfabe3fdba84d28e50f402bc235c5e41ab0adc');
+const LoginRoute = require('./login')
+
+
+
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
 
+
 const port = process.env.PORT || 9000;
-const amazontracking = "deal110"
-const flipkarttracking = "awdhesh21"
+const amazontracking = "ajaygang"
+const flipkarttracking = "ajaygangw"
 var output_data = {found:false}
+
+app.use('/login', LoginRoute);
 
 app.get('/', (req,res) => {
 	res.render('index', output_data);
@@ -75,8 +82,7 @@ app.post("/sendTelegram", async (req,res)=> {
 	const fullMessage = message + "\n\n" + link
 
 	console.log(fullMessage)
-	var telegram = 'https://api.telegram.org/bot1917163260:AAGIjRqxoDz47Obt80_r-cUmyVmpvYelbZ0/sendMessage?chat_id=@PartyDoPetrolDo&text=' + message +"%0D%0A"+link;
-	
+	var telegram = 'https://api.telegram.org/bot920078388:AAEyGNiGr2FpXPKVIHyP5dyMUXE2NACp67Q/sendMessage?chat_id=@Coolztrickloot&text=' + message +"%0D%0A"+link;
 	options = {
 		headers:{
 			'Content-Type': 'application/json',
@@ -86,7 +92,6 @@ app.post("/sendTelegram", async (req,res)=> {
 	await fetch(telegram,options).then(res=> {
  		return res.json();
  	}).then(json => {
- 		
 		output_data = {found:false}
 		return res.redirect("/")
  	});
@@ -106,10 +111,6 @@ function linkConverter(url) {
 			var newurl = producturl(url);
 			
 		}
-	}
-	else if(url.includes('flipkart')) {
-		var newurl = flipkarturl(url);
-		
 	}
 	else {
 		var newurl = "its nor an amazon or flipkart url";
