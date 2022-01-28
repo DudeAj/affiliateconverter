@@ -9,12 +9,8 @@ const bodyParser = require('body-parser')
 const bitly = new BitlyClient('2adfabe3fdba84d28e50f402bc235c5e41ab0adc');
 const LoginRoute = require('./login')
 
-
-
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
-
-
 
 const port = process.env.PORT || 9000;
 const amazontracking = "ajaygang"
@@ -28,14 +24,14 @@ app.get('/', (req,res) => {
 })
 
 app.post('/', async (req,res) => {
-	const userInputData = req.body.inputdata
-    var expression = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/gi;
+	const userInputData = req.body
+	console.log(userInputData);
+    /* var expression = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/gi;
 	try {
 		var matches = userInputData.match(expression);
 		var messageString = userInputData.split('http');
 		var message = messageString[0];
-	   
-	   var options = {
+		var options = {
 		   headers: {
 			    'Access-Control-Allow-Headers':'*',
 			    'Access-Control-Allow-Origin':'*',
@@ -69,7 +65,7 @@ app.post('/', async (req,res) => {
 
 	catch {
 		res.json({message:"Enter Text that Contains", data:" a Proper Message"})
-	}
+	} */
 });
 
 app.post("/sendTelegram", async (req,res)=> {
