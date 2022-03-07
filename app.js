@@ -6,18 +6,16 @@ const Bluebird = require('bluebird');
 fetch.Promise = Bluebird;
 const BitlyClient = require('bitly').BitlyClient;
 const bodyParser = require('body-parser')
-const bitly = new BitlyClient('2adfabe3fdba84d28e50f402bc235c5e41ab0adc');
+const bitly = new BitlyClient(process.env.BITLY_TOKEN);
 const LoginRoute = require('./login')
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
 const port = process.env.PORT || 9000;
-const amazontracking = "ajaygang"
-const flipkarttracking = "ajaygangw"
+const amazontracking = process.env.AMAZON_TRACKING
+const flipkarttracking = process.env.FLIPKART_TRACKING
 var output_data = {found:false}
-
-app.use('/login', LoginRoute);
 
 app.get('/', (req,res) => {
 	res.render('index', output_data);
@@ -78,7 +76,7 @@ app.post("/sendTelegram", async (req,res)=> {
 	const fullMessage = message + "\n\n" + link
 
 	console.log(fullMessage)
-	var telegram = 'https://api.telegram.org/bot920078388:AAEyGNiGr2FpXPKVIHyP5dyMUXE2NACp67Q/sendMessage?chat_id=@Coolztrickloot&text=' + message +"%0D%0A"+link;
+	var telegram = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage?chat_id=@${process.env.TELEGRAM_CHANNEL}&text=` + message +"%0D%0A"+link;
 	options = {
 		headers:{
 			'Content-Type': 'application/json',
