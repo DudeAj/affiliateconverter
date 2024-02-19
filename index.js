@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
+app.set("views", __dirname + "/views");
 app.set("view engine", 'ejs');
+app.use(express.static(__dirname + "public"));
 const fetch = require('node-fetch');
 const Bluebird = require('bluebird');
 fetch.Promise = Bluebird;
