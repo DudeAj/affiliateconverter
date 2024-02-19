@@ -12,7 +12,7 @@ const LoginRoute = require('./login')
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 3000;
 const amazontracking = process.env.AMAZON_TRACKING
 const flipkarttracking = process.env.FLIPKART_TRACKING
 var output_data = {found:false}
@@ -92,7 +92,7 @@ app.post("/sendTelegram", async (req,res)=> {
 })
 
 app.listen(port,err=> {
-    console.log(`listening on port 9000`);
+    console.log(`listening on port 3000`);
 })
 
 function linkConverter(url) {
